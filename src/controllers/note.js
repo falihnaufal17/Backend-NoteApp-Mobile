@@ -22,6 +22,14 @@ module.exports = {
                 miscHelper.response(res, 'Ups something wrong!', 400, error)
             })
     },
+    getNoteByCategory: (req, res) => {
+        const id_category = req.params.id_category
+        noteModel.getNoteByCategory(id_category)
+            .then((resultData) => {
+                const result = resultData
+                miscHelper.response(res, result)
+            })
+    },
     getNoteById: (req, res) => {
         const id_note = req.params.id_note
         noteModel.getNoteById(id_note)

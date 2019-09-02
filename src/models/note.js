@@ -3,7 +3,7 @@ const conn = require('../configs/db')
 module.exports = {
     getAllNote: () => {
         return new Promise((resolve, reject) => {
-            conn.query(`SELECT note.id_note, note.title, note.description, category.name, category.color, note.created_at, note.updated_at FROM note INNER JOIN category ON note.id_category = category.id_category ORDER BY title ASC`, (err, result) => {
+            conn.query(`SELECT note.id_note, note.title, note.description, note.id_category, category.name, category.color, note.created_at, note.updated_at FROM note INNER JOIN category ON note.id_category = category.id_category ORDER BY title ASC`, (err, result) => {
                 if (!err) {
                     resolve(result)
                 } else {
@@ -14,7 +14,7 @@ module.exports = {
     },
     getNoteById: (id_note) => {
         return new Promise((resolve, reject) => {
-            conn.query(`SELECT note.id_note, note.title, note.description, category.name, category.color,note.created_at, note.updated_at FROM note INNER JOIN category ON note.id_category = category.id_category WHERE id_note = ?`, id_note, (err, result) => {
+            conn.query(`SELECT note.id_note, note.title, note.description, note.id_category, category.name, category.color,note.created_at, note.updated_at FROM note INNER JOIN category ON note.id_category = category.id_category WHERE id_note = ?`, id_note, (err, result) => {
                 if (!err) {
                     resolve(result)
                 } else {
@@ -23,9 +23,22 @@ module.exports = {
             })
         })
     },
+
+    getNoteByCategory: (id_category) => {
+        return new Promise((resolve, reject) => {
+            conn.query(`SELECT note.id_note, note.title, note.description, note.id_category, category.name, category.color,note.created_at, note.updated_at FROM note INNER JOIN category ON note.id_category = category.id_category WHERE id_category = ?`, id_category, (err, result) => {
+                if (!err) {
+                    resolve(result)
+                } else {
+                    reject(new Error(err))
+                }
+            })
+        })
+    },
+
     getNoteDescending: () => {
         return new Promise((resolve, reject) => {
-            conn.query(`SELECT note.id_note, note.title, note.description, category.name, category.color, note.created_at, note.updated_at FROM note INNER JOIN category ON note.id_category = category.id_category ORDER BY title DESC`, (err, result) => {
+            conn.query(`SELECT note.id_note, note.title, note.description, note.id_category, category.name, category.color, note.created_at, note.updated_at FROM note INNER JOIN category ON note.id_category = category.id_category ORDER BY title DESC`, (err, result) => {
                 if (!err) {
                     resolve(result)
                 } else {
