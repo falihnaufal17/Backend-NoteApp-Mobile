@@ -26,7 +26,7 @@ module.exports = {
 
     getNoteByCategory: (id_category) => {
         return new Promise((resolve, reject) => {
-            conn.query(`SELECT note.id_note, note.title, note.description, note.id_category, category.name, category.color,note.created_at, note.updated_at FROM note INNER JOIN category ON note.id_category = category.id_category WHERE note.id_category = ?`, id_category, (err, result) => {
+            conn.query(`SELECT note.id_note, note.title, note.description, note.id_category, category.name, category.color,note.created_at, note.updated_at FROM note INNER JOIN category ON note.id_category = category.id_category WHERE category.id_category = ?`, id_category, (err, result) => {
                 if (!err) {
                     resolve(result)
                 } else {
