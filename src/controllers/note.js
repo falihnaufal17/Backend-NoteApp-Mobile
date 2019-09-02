@@ -26,7 +26,7 @@ module.exports = {
         const id_category = req.params.id_category
         noteModel.getNoteByCategory(id_category)
             .then((resultData) => {
-                const result = resultData
+                const result = resultData[0]
                 miscHelper.response(res, result)
             })
     },
