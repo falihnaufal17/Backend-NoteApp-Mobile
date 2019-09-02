@@ -1,5 +1,6 @@
 const categoryModel = require('../models/category')
 const miscHelper = require('../helpers/helper')
+const cloudinary = require('cloudinary')
 
 module.exports = {
     getAllCategory: (req, res) => {
@@ -24,6 +25,27 @@ module.exports = {
             })
     },
     addCategory: (req, res) => {
+        // let path = req.file.path
+        // let geturl = async (req) => {
+        //     cloudinary.config({
+        //         cloud_name: 'dnqtceffv',
+        //         api_key: '796497613444653',
+        //         api_secret: 'We2TAGrwko6E8C4t3Uemrm9kbeA'
+        //     })
+
+        //     let data
+        //     await cloudinary.uploader.upload(path, (result) => {
+        //         const fs = require('fs')
+        //         fs.unlinkSync(path)
+        //         data = result.url
+        //     })
+
+        //     return data
+        // }
+
+        // let filename = 'images/' + req.file.filename
+        // console.log("FILENYA: ", filename)
+        // console.log("data: ", data)
         const data = {
             name: req.body.name,
             image: req.body.image,
