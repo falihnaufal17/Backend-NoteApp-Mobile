@@ -7,6 +7,7 @@ const port = process.env.PORT || 1700
 
 // init routes
 const categoryRoutes = require('./src/routers/category')
+const noteRoutes = require('./src/routers/note')
 
 app.listen(port, () => {
     console.log(`Server noteapp started with port: ${port}`)
@@ -17,3 +18,4 @@ app.use(bodyparser.urlencoded({ extended: false }))
 
 // Routes
 app.use('/categories', categoryRoutes)
+app.use('/notes', noteRoutes)

@@ -1,0 +1,12 @@
+const express = require('express')
+const Route = express.Router()
+const noteController = require('../controllers/note')
+
+Route
+    .get('/', noteController.getAllNote)
+    .get('/:id_note', noteController.getNoteById)
+    .post('/', noteController.addNote)
+    .delete('/:id_note', noteController.deleteNote)
+    .patch('/:id_note', noteController.updateNote)
+
+module.exports = Route
