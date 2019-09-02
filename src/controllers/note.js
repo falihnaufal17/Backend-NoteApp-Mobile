@@ -12,6 +12,16 @@ module.exports = {
                 miscHelper.response(res, 'Ups something wrong!', 400, error)
             })
     },
+    getNoteDescending: (req, res) => {
+        noteModel.getNoteDescending()
+            .then((resultData) => {
+                const result = resultData
+                miscHelper.response(res, result)
+            })
+            .catch((error) => {
+                miscHelper.response(res, 'Ups something wrong!', 400, error)
+            })
+    },
     getNoteById: (req, res) => {
         const id_note = req.params.id_note
         noteModel.getNoteById(id_note)
